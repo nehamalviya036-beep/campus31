@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Store App Landing Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:#f4f4f4;color:#333;}
+    header{background:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    header .logo{font-size:24px;font-weight:700;color:#5b2d82;}
+    header nav a{margin:0 15px;text-decoration:none;color:#555;font-weight:500;}
+    .btn{background:#5b2d82;color:#fff;padding:10px 24px;border-radius:30px;border:none;cursor:pointer;font-weight:600;}
+    /* HERO SECTION UPGRADE */
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:80px 8%;
+    background:linear-gradient(135deg,#f5f3ff,#ffffff);
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-left{
+    max-width:550px;
+}
+
+.hero-left h1{
+    font-size:56px;
+    font-weight:700;
+    color:#5b2d82;
+    line-height:1.2;
+}
+
+.hero-left h1 span{
+    color:#ff7a00;
+}
+
+.hero-left p{
+    margin:25px 0;
+    font-size:18px;
+    color:#555;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.primary-btn{
+    background:#5b2d82;
+    color:#fff;
+    padding:14px 28px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.primary-btn:hover{
+    background:#ff7a00;
+    transform:translateY(-3px);
+}
+
+.outline-btn{
+    background:transparent;
+    border:2px solid #5b2d82;
+    color:#5b2d82;
+    padding:14px 28px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.outline-btn:hover{
+    background:#5b2d82;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+.hero-right img{
+    width:480px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    animation:float 4s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0px);}
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-right img{
+        margin-top:40px;
+        width:90%;
+    }
+}
+
+    .features{display:flex;justify-content:space-around;padding:60px;background:#fff;}
+    .feature-box{text-align:center;width:30%;}
+    .feature-box img{width:80px;margin-bottom:15px;}
+    .feature-box h3{font-size:20px;color:#5b2d82;margin-bottom:10px;}
+
+    .cards-section{padding:60px;text-align:center;background:#fff;}
+    .cards{display:flex;justify-content:space-around;margin-top:30px;}
+    .card{background:#fafafa;padding:20px;border-radius:15px;width:280px;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+    .card img{width:100%;border-radius:12px;}
+    .card button{margin-top:12px;background:#ff7a00;color:#fff;border:none;padding:10px;cursor:pointer;border-radius:20px;}
+
+    .app-download{background:#5b2d82;color:#fff;padding:60px;text-align:center;}
+    .download-btn{background:#ff7a00;color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;display:inline-block;margin:10px;font-weight:600;}
+
+    .testimonial{background:#fff;padding:60px;text-align:center;}
+    .test-cards{display:flex;justify-content:space-around;margin-top:30px;}
+    .test-card{background:#fafafa;padding:20px;border-radius:12px;width:30%;font-style:italic;}
+
+    .teachers{background:#fff;padding:60px;text-align:center;}
+    .teacher-card{display:inline-block;width:200px;margin:10px;}
+    .teacher-card img{width:100%;border-radius:50%;}
+    .teacher-card p{margin-top:10px;font-weight:600;}
+
+    .newsletter{background:#5b2d82;color:#fff;padding:50px;text-align:center;}
+    .newsletter input{padding:12px;width:300px;border:none;border-radius:24px;margin-right:10px;}
+    .newsletter button{padding:12px 20px;border:none;border-radius:24px;background:#ff7a00;color:#fff;cursor:pointer;}
+
+    footer{background:#222;color:#aaa;padding:40px;text-align:center;}
+    @media(max-width:900px){
+        .hero{flex-direction:column;}
+        .cards{flex-direction:column;align-items:center;}
+        .test-cards{flex-direction:column;}
+    }
+
+    /* WHY CHOOSE US */
+.why-section{
+    background:#ffffff;
+    padding:70px 40px;
+    text-align:center;
+}
+
+.why-section h2{
+    font-size:36px;
+    color:#5b2d82;
+    margin-bottom:40px;
+}
+
+.why-cards{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.why-card{
+    background:#f8f8f8;
+    padding:30px;
+    width:250px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.why-card:hover{
+    transform:translateY(-8px);
+}
+
+.why-card img{
+    width:60px;
+    margin-bottom:15px;
+}
+
+.why-card h3{
+    color:#5b2d82;
+    margin-bottom:10px;
+}
+
+.why-card p{
+    font-size:14px;
+    color:#555;
+}
+/* STATISTICS SECTION */
+.stats-section{
+    background:#5b2d82;
+    color:#fff;
+    padding:70px 20px;
+    display:flex;
+    justify-content:space-around;
+    text-align:center;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    margin:20px;
+}
+
+.stat-box h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    font-size:16px;
+}
+/* APP DOWNLOAD */
+.app-section{
+    background:#f4f4f4;
+    padding:80px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.app-content{
+    max-width:500px;
+}
+
+.app-content h2{
+    color:#5b2d82;
+    margin-bottom:20px;
+}
+
+.app-content p{
+    margin-bottom:30px;
+    color:#555;
+}
+
+.app-buttons a{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#5b2d82;
+    color:#fff;
+    padding:12px 20px;
+    margin-right:15px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.app-buttons a:hover{
+    background:#ff7a00;
+}
+
+.app-image img{
+    width:350px;
+    border-radius:20px;
+}
+/* TESTIMONIAL SECTION */
+.testimonial-section{
+    background:#f8f9ff;
+    padding:90px 40px;
+    text-align:center;
+}
+
+.testimonial-section h2{
+    color:#5b2d82;
+    margin-bottom:60px;
+    font-size:32px;
+}
+
+.testimonial-cards{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.testimonial-card{
+    background:#ffffff;
+    padding:40px 30px;
+    width:320px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.testimonial-card:hover{
+    transform:translateY(-10px);
+}
+
+.user-img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    margin-bottom:20px;
+    border:4px solid #5b2d82;
+}
+
+.testimonial-card p{
+    font-style:italic;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.stars{
+    color:#ffb400;
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.testimonial-card h4{
+    color:#5b2d82;
+    margin-bottom:5px;
+}
+
+.testimonial-card span{
+    color:#888;
+    font-size:14px;
+}
+
+/* NEWSLETTER */
+.newsletter-section{
+    background:linear-gradient(135deg,#5b2d82,#8e44ad);
+    padding:90px 20px;
+    text-align:center;
+    color:#fff;
+}
+
+.newsletter-container{
+    max-width:600px;
+    margin:auto;
+}
+
+.newsletter-section h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.newsletter-section p{
+    margin-bottom:30px;
+    font-size:16px;
+    opacity:0.9;
+}
+
+.newsletter-form{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.newsletter-form input{
+    padding:14px 20px;
+    width:300px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+}
+
+.newsletter-form button{
+    padding:14px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff7a00;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.newsletter-form button:hover{
+    background:#fff;
+    color:#5b2d82;
+}
+
+/* FOOTER */
+.footer{
+    background:#1d1d1d;
+    color:#ccc;
+    padding:70px 20px 20px;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.footer-box{
+    flex:1 1 220px;
+}
+
+.footer-box h3,
+.footer-box h4{
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.footer-box p{
+    font-size:14px;
+    line-height:1.6;
+}
+
+.footer-box ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-box ul li{
+    margin-bottom:10px;
+}
+
+.footer-box ul li a{
+    color:#ccc;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.footer-box ul li a:hover{
+    color:#ff7a00;
+}
+
+.social-icons a{
+    font-size:20px;
+    margin-right:10px;
+    text-decoration:none;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid #333;
+    font-size:14px;
+}
+.login-btn{
+    background: linear-gradient(45deg,#7b2ff7,#f107a3);
+    border: none;
+    padding: 10px 20px;
+    color: rgb(11, 9, 58);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.form-popup{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.form-box{
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    color: white;
+}
+
+.form-box input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+}
+
+.submit-btn{
+    width: 100%;
+    padding: 10px;
+    background: #7b2ff7;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-btn{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Book Store App</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#courses">Courses</a>
+        <a href="#download">Download</a>
+    </nav>
+    
+    <button class="login-btn" onclick="openForm()">Sign In</button>
+</header>
+<!-- Popup Form -->
+<div class="form-popup" id="formPopup">
+    <div class="form-box">
+        <span class="close-btn" onclick="closeForm()">×</span>
+
+        <h2 id="formTitle">Login</h2>
+
+        <input type="email" placeholder="Enter Email" required>
+        <input type="password" placeholder="Enter Password" required>
+
+        <button class="submit-btn">Login</button>
+
+        <p id="toggleText">
+            Don't have an account? 
+            <a href="#" onclick="toggleForm()">Sign Up</a>
+        </p>
+    </div>
+</div>
+<section class="hero">
+    <div class="hero-left">
+        <h1>Learn Anything, <br><span>Anytime</span></h1>
+        <p>
+            Explore top-rated courses and boost your future 
+            with our powerful mobile learning platform.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="btn primary-btn">Get Started</button>
+            <button class="btn outline-btn">Explore Courses</button>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" alt="Books">
+    </div>
+</section>
+<section id="features" class="features">
+    <div class="feature-box">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.TIvsNEQc2IPNgdi4z7EmogHaEK?pid=Api&P=0&h=180=📚">
+        <h3>Wide Course Library</h3>
+        <p>Find courses in many categories</p>
+    </div>
+    <div class="feature-box">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.6x3zSNT-CACIBZlcS2SFpgHaE8?pid=Api&P=0&h=180=🎓">
+        <h3>Expert Teachers</h3>
+        <p>Learn from real professionals</p>
+    </div>
+    <div class="feature-box">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.jt6sYkz66uyZ0eIoKuwITwHaEo?pid=Api&P=0&h=180=📱">
+        <h3>Mobile & Web</h3>
+        <p>Learn on the go</p>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-section">
+    <h2>Why Choose Us</h2>
+
+    <div class="why-cards">
+
+        <div class="why-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="Support">
+            <h3>24/7 Support</h3>
+            <p>We are here to help you anytime with dedicated support team.</p>
+        </div>
+
+        <div class="why-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Lifetime Access">
+            <h3>Lifetime Access</h3>
+            <p>Access your purchased courses anytime without restrictions.</p>
+        </div>
+
+        <div class="why-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/929/929564.png" alt="Money Back">
+            <h3>Money Back Guarantee</h3>
+            <p>Not satisfied? Get full refund within 7 days.</p>
+        </div>
+
+        <div class="why-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Certified">
+            <h3>Certified Courses</h3>
+            <p>Get industry-recognized certificates after completion.</p>
+        </div>
+
+    </div>
+</section>
+<!-- STATISTICS SECTION -->
+<section class="stats-section">
+    <div class="stat-box">
+        <h2>10,000+</h2>
+        <p>Students</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>150+</h2>
+        <p>Courses</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>50+</h2>
+        <p>Experts</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>4.8 ★</h2>
+        <p>Average Rating</p>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+    <h2>What Our Students Say</h2>
+
+    <div class="testimonial-cards">
+
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="user-img">
+            <p>"This platform completely changed my career path. The courses are practical and easy to follow."</p>
+            <div class="stars">★★★★★</div>
+            <h4>Aditi Sharma</h4>
+            <span>UI/UX Designer</span>
+        </div>
+
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="user-img">
+            <p>"Very easy to understand courses and amazing support team. Highly recommended!"</p>
+            <div class="stars">★★★★★</div>
+            <h4>Rahul Verma</h4>
+            <span>Web Developer</span>
+        </div>
+
+        <div class="testimonial-card">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="user-img">
+            <p>"Best online learning experience I've ever had. Worth every rupee."</p>
+            <div class="stars">★★★★★</div>
+            <h4>Sneha Patel</h4>
+            <span>Data Analyst</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- APP DOWNLOAD -->
+<section class="app-section">
+    <div class="app-content">
+        <h2>Download Our Learning App</h2>
+        <p>Learn anytime, anywhere from your mobile device.</p>
+
+        <div class="app-buttons">
+            <a href="#">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174836.png" width="24">
+                Download for Android
+            </a>
+
+            <a href="#">
+                <img src="https://cdn-icons-png.flaticon.com/512/731/731985.png" width="24">
+                Download for iOS
+            </a>
+        </div>
+    </div>
+
+    <div class="app-image">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80">
+    </div>
+</section>
+
+
+<!-- NEWSLETTER SECTION -->
+<section class="newsletter-section">
+    <div class="newsletter-container">
+        <h2>Subscribe To Our Newsletter</h2>
+        <p>Get updates about new courses, offers & learning tips directly in your inbox.</p>
+
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>EduLearn</h3>
+            <p>Empowering students with quality online education and practical skills.</p>
+        </div>
+
+        <div class="footer-box">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#">🌐</a>
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">▶</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 EduLearn. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+
+function openForm(){
+    document.getElementById("formPopup").style.display = "flex";
+}
+
+function closeForm(){
+    document.getElementById("formPopup").style.display = "none";
+}
+
+function toggleForm(){
+    let title = document.getElementById("formTitle");
+    let btn = document.querySelector(".submit-btn");
+    let text = document.getElementById("toggleText");
+
+    if(title.innerText === "Login"){
+        title.innerText = "Sign Up";
+        btn.innerText = "Create Account";
+        text.innerHTML = 'Already have an account? <a href="#" onclick="toggleForm()">Login</a>';
+    }else{
+        title.innerText = "Login";
+        btn.innerText = "Login";
+        text.innerHTML = 'Don\'t have an account? <a href="#" onclick="toggleForm()">Sign Up</a>';
+    }
+}
+
+// ✅ Newsletter Alert
+document.querySelector(".newsletter-form")
+.addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Thank you for subscribing! 🎉");
+});
+
+
+// ✅ Animated Counter
+const counters = document.querySelectorAll(".stat-box h2");
+
+counters.forEach(counter => {
+
+    const targetText = counter.innerText.replace(/\D/g,'');
+    const target = +targetText;
+
+    if(!target) return;
+
+    counter.innerText = "0";
+
+    const updateCounter = () => {
+        const count = +counter.innerText;
+        const increment = target / 100;
+
+        if(count < target){
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCounter, 20);
+        } else {
+            counter.innerText = target + "+";
+        }
+    };
+
+    updateCounter();
+});
+
+</script>
+
+</body>
+</html>

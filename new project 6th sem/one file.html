@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Web World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== BASIC ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:#222;
+  color:#fff;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 50px;
+}
+
+.topbar span{ color:#00bcd4; }
+
+.social i{
+  margin-left:10px;
+  cursor:pointer;
+}
+
+nav{
+  background:#fff;
+  text-align:center;
+}
+
+nav a{
+  text-decoration:none;
+  color:#170606;
+  padding:15px;
+  display:inline-block;
+}
+
+nav a:hover{
+  background:#00bcd4;
+  color:#fff;
+}
+
+/* ===== SLIDER ===== */
+.slider{
+  height:420px;
+  background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover;
+  position:relative;
+  transition:0.6s;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.overlay h1{
+  font-size:40px;
+}
+
+.dots{
+  margin-top:20px;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  background:#aaa;
+  border-radius:50%;
+  display:inline-block;
+  margin:5px;
+  cursor:pointer;
+}
+
+.dot.active{ background:#00bcd4; }
+
+/* ===== SERVICES ===== */
+.services{
+  padding:50px;
+  text-align:center;
+}
+
+.services span{ color:#00bcd4; }
+
+.service-box{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.box{
+  width:250px;
+  padding:30px;
+  margin:10px;
+  border:1px solid #ddd;
+  transition:0.4s;
+}
+
+.box i{
+  font-size:40px;
+  color:#00bcd4;
+}
+
+.box.active,
+.box:hover{
+  background:#00bcd4;
+  color:#fff;
+}
+
+.box.active i,
+.box:hover i{
+  color:#fff;
+}
+
+/* ===== GALLERY ===== */
+.gallery{
+  background:#f4f4f4;
+  padding:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+
+.grid img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#222;
+  color:#ccc;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  padding:40px;
+}
+
+footer h3{
+  color:#fff;
+  margin-bottom:10px;
+}
+/* ===== ABOUT ===== */
+.about{
+  padding:60px 50px;
+  background:#fff;
+}
+
+.about-container{
+  display:flex;
+  gap:40px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.about-img{
+  flex:1;
+}
+
+.about-img img{
+  width:100%;
+  border-radius:10px;
+}
+
+.about-content{
+  flex:1;
+}
+
+.about-content h2{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+.about-content span{
+  color:#00bcd4;
+}
+
+.about-content p{
+  line-height:1.7;
+  margin-bottom:15px;
+  color:#555;
+}
+
+.about-content button{
+  padding:10px 25px;
+  background:#00bcd4;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.about-content button:hover{
+  background:#0097a7;
+}
+
+/* ===== SERVICES ===== */
+.services{
+  padding:60px 40px;
+  text-align:center;
+  background:#f4f4f4;
+}
+
+.services h2{
+  font-size:32px;
+}
+
+.services span{
+  color:#00bcd4;
+}
+
+.sub-text{
+  color:#666;
+  margin:10px 0 40px;
+}
+
+.service-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.service-card{
+  background:#fff;
+  padding:30px 20px;
+  border-radius:10px;
+  transition:0.4s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.service-card i{
+  font-size:40px;
+  color:#00bcd4;
+  margin-bottom:15px;
+}
+
+.service-card h3{
+  margin-bottom:10px;
+}
+
+.service-card p{
+  color:#555;
+  font-size:14px;
+}
+
+.service-card:hover{
+  background:#00bcd4;
+  transform:translateY(-10px);
+  color:#fff;
+}
+
+.service-card:hover i,
+.service-card:hover p{
+  color:#fff;
+}
+/* ===== PAGES ===== */
+.pages{
+  padding:60px 40px;
+  background:#fff;
+  text-align:center;
+}
+
+.pages h2{
+  font-size:32px;
+}
+
+.pages span{
+  color:#00bcd4;
+}
+
+.pages-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.page-card{
+  border:1px solid #ddd;
+  padding:30px 20px;
+  border-radius:10px;
+  transition:0.4s;
+}
+
+.page-card i{
+  font-size:40px;
+  color:#00bcd4;
+  margin-bottom:15px;
+}
+
+.page-card h3{
+  margin-bottom:10px;
+}
+
+.page-card p{
+  font-size:14px;
+  color:#555;
+  margin-bottom:15px;
+}
+
+.page-card button{
+  padding:8px 20px;
+  background:#00bcd4;
+  border:none;
+  color:#fff;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.page-card:hover{
+  background:#00bcd4;
+  color:#fff;
+  transform:translateY(-10px);
+}
+
+.page-card:hover i,
+.page-card:hover p{
+  color:#fff;
+}
+
+.page-card:hover button{
+  background:#fff;
+  color:#00bcd4;
+}
+/* ===== BLOG ===== */
+.blog{
+  padding:60px 40px;
+  background:#f4f4f4;
+  text-align:center;
+}
+
+.blog span{ color:#00bcd4; }
+
+.blog-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.blog-card{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  transition:0.4s;
+}
+
+.blog-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.blog-card:hover{
+  transform:translateY(-10px);
+}
+
+.blog-content{
+  padding:20px;
+}
+
+.blog-content p{
+  font-size:14px;
+  color:#555;
+  margin:10px 0;
+}
+
+.blog-content button{
+  padding:8px 20px;
+  background:#00bcd4;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  border-radius:20px;
+}
+
+/* ===== CONTACT ===== */
+.contact{
+  padding:60px 40px;
+  background:#fff;
+  text-align:center;
+}
+
+.contact span{ color:#00bcd4; }
+
+.contact-container{
+  display:flex;
+  gap:40px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+.contact form{
+  width:350px;
+  display:flex;
+  flex-direction:column;
+}
+
+.contact input,
+.contact textarea{
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.contact button{
+  padding:12px;
+  background:#00bcd4;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.contact-info{
+  max-width:300px;
+  text-align:left;
+}
+
+.contact-info i{
+  color:#00bcd4;
+  margin-right:10px;
+}
+
+/* ===== LOGIN ===== */
+.login{
+  padding:60px 40px;
+  background:#f4f4f4;
+  text-align:center;
+}
+
+.login span{
+  color:#00bcd4;
+}
+
+.login-container{
+  display:flex;
+  justify-content:center;
+  margin-top:30px;
+}
+
+.login form{
+  background:#fff;
+  padding:30px;
+  width:320px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.login input{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.login button{
+  width:100%;
+  padding:12px;
+  background:#00bcd4;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.login-msg{
+  margin-top:10px;
+  font-size:14px;
+}
+
+
+
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="topbar">
+    <h2>Web<span>World</span></h2>
+    <div class="social">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-linkedin-in"></i>
+    </div>
+  </div>
+
+ <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Service</a>
+    <a href="#">Pages</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+  </nav>
+
+</header>
+
+<!-- SLIDER -->
+<section class="slider" id="slider">
+  <div class="overlay">
+    <h1 id="slide-title">WELCOME TO OUR WEB SITE</h1>
+    <p id="slide-text">Lorem ipsum is simply dummy text of the printing industry.</p>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <h2>Lorem Ipsum Is <span>Simply Dummy</span></h2>
+  <p>Lorem ipsum is simply dummy text of the printing industry.</p>
+
+  <div class="service-box">
+    <div class="box active">
+      <i class="fa fa-desktop"></i>
+      <h3>Web Design</h3>
+      <p>Lorem ipsum dummy text.</p>
+    </div>
+
+    <div class="box">
+      <i class="fa fa-pen"></i>
+      <h3>Graphic Design</h3>
+      <p>Lorem ipsum dummy text.</p>
+    </div>
+
+    <div class="box">
+      <i class="fa fa-image"></i>
+      <h3>Photography</h3>
+      <p>Lorem ipsum dummy text.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="grid">
+    <img src="https://picsum.photos/400/300?1">
+    <img src="https://picsum.photos/400/300?2">
+    <img src="https://picsum.photos/400/300?3">
+    <img src="https://picsum.photos/400/300?4">
+    <img src="https://picsum.photos/400/300?5">
+    <img src="https://picsum.photos/400/300?6">
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about">
+  <div class="about-container">
+    
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="about">
+    </div>
+
+    <div class="about-content">
+      <h2>About <span>Us</span></h2>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+      </p>
+
+      <p>
+        We create modern, responsive and user-friendly websites using
+        HTML, CSS and JavaScript for business and portfolio use.
+      </p>
+
+      <button>Read More</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services" id="services">
+  <h2>Our <span>Services</span></h2>
+  <p class="sub-text">We provide high quality digital services</p>
+
+  <div class="service-container">
+    <div class="service-card">
+      <i class="fa fa-desktop"></i>
+      <h3>Web Design</h3>
+      <p>Modern, responsive and user-friendly website designs.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-code"></i>
+      <h3>Web Development</h3>
+      <p>Clean and optimized code using HTML, CSS & JavaScript.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-pen-nib"></i>
+      <h3>Graphic Design</h3>
+      <p>Creative posters, banners and UI designs.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-mobile-alt"></i>
+      <h3>Responsive Design</h3>
+      <p>Perfect layout for mobile, tablet and desktop.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-camera"></i>
+      <h3>Photography</h3>
+      <p>High-quality photos for websites and portfolios.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa fa-search"></i>
+      <h3>SEO Optimization</h3>
+      <p>Improve website ranking on search engines.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAGES SECTION -->
+<section class="pages" id="pages">
+  <h2>Our <span>Pages</span></h2>
+  <p class="sub-text">Explore our website pages & features</p>
+
+  <div class="pages-container">
+    <div class="page-card">
+      <i class="fa fa-user"></i>
+      <h3>About Page</h3>
+      <p>Know more about our company and team.</p>
+      <button>View Page</button>
+    </div>
+
+    <div class="page-card">
+      <i class="fa fa-briefcase"></i>
+      <h3>Services Page</h3>
+      <p>Details about what services we provide.</p>
+      <button>View Page</button>
+    </div>
+
+    <div class="page-card">
+      <i class="fa fa-image"></i>
+      <h3>Gallery Page</h3>
+      <p>Check our latest work and projects.</p>
+      <button>View Page</button>
+    </div>
+
+    <div class="page-card">
+      <i class="fa fa-blog"></i>
+      <h3>Blog Page</h3>
+      <p>Read our latest articles and updates.</p>
+      <button>View Page</button>
+    </div>
+
+    <div class="page-card">
+      <i class="fa fa-envelope"></i>
+      <h3>Contact Page</h3>
+      <p>Get in touch with us easily.</p>
+      <button>View Page</button>
+    </div>
+
+    <div class="page-card">
+      <i class="fa fa-lock"></i>
+      <h3>Login Page</h3>
+      <p>Secure login & user authentication.</p>
+      <button>View Page</button>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog" id="blog">
+  <h2>Latest <span>Blog</span></h2>
+  <p class="sub-text">Read our latest news & articles</p>
+
+  <div class="blog-container">
+    
+    <div class="blog-card">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80">
+      <div class="blog-content">
+        <h3>Web Design Trends 2025</h3>
+        <p>Latest UI/UX trends for modern and creative websites.</p>
+        <button>Read More</button>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80">
+      <div class="blog-content">
+        <h3>Why Responsive Design?</h3>
+        <p>Why every website must look perfect on all devices.</p>
+        <button>Read More</button>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=800&q=80">
+      <div class="blog-content">
+        <h3>JavaScript for Beginners</h3>
+        <p>Learn JavaScript basics to build interactive websites.</p>
+        <button>Read More</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+  <h2>Contact <span>Us</span></h2>
+  <p class="sub-text">Feel free to get in touch with us</p>
+
+  <div class="contact-container">
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Your Email">
+      <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <h3>Get In Touch</h3>
+      <p><i class="fa fa-location-dot"></i> Indore, India</p>
+      <p><i class="fa fa-envelope"></i> info@gmail.com</p>
+      <p><i class="fa fa-phone"></i> +91 98765 43210</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <h3>Popular Post</h3>
+    <p>Lorem ipsum dummy text.</p>
+  </div>
+
+  <div>
+    <h3>Tags</h3>
+    <p>HTML CSS JS DESIGN</p>
+  </div>
+
+  <div>
+    <h3>About Us</h3>
+    <p>Lorem ipsum is simply dummy text.</p>
+  </div>
+
+  <div>
+    <h3>Get In Touch</h3>
+    <p>Email: info@gmail.com</p>
+  </div>
+</footer>
+
+
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+const slides = [
+  {
+    img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    title:"WELCOME TO OUR WEB SITE",
+    text:"Lorem ipsum is simply dummy text of the printing industry."
+  },
+  {
+    img:"https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    title:"CREATIVE WEB DESIGN",
+    text:"We build modern & responsive websites."
+  },
+  {
+    img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    title:"BEST DIGITAL SOLUTION",
+    text:"Your business growth is our mission."
+  }
+];
+
+let index = 0;
+const slider = document.getElementById("slider");
+const title = document.getElementById("slide-title");
+const text = document.getElementById("slide-text");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide(i){
+  slider.style.background = `url(${slides[i].img}) center/cover`;
+  title.innerText = slides[i].title;
+  text.innerText = slides[i].text;
+  dots.forEach(d => d.classList.remove("active"));
+  dots[i].classList.add("active");
+}
+
+setInterval(()=>{
+  index = (index + 1) % slides.length;
+  showSlide(index);
+},3000);
+
+dots.forEach((dot,i)=>{
+  dot.onclick = ()=>{
+    index = i;
+    showSlide(i);
+  };
+});
+const serviceCards = document.querySelectorAll(".service-card");
+
+window.addEventListener("scroll", () => {
+  serviceCards.forEach(card => {
+    const top = card.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0)";
+    }
+  });
+});
+
+// initial state
+serviceCards.forEach(card=>{
+  card.style.opacity="0";
+  card.style.transform="translateY(40px)";
+  card.style.transition="0.6s";
+});
+
+document.querySelectorAll(".page-card button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    alert("This page will be added soon 🚀");
+  });
+});
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if(name === "" || email === "" || message === ""){
+    alert("Please fill all fields ❌");
+  } else {
+    alert("Message sent successfully ✅");
+    this.reset();
+  }
+});
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

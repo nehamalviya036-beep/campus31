@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Music Generator - College Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+background:linear-gradient(135deg,#0f2027,#120723,#250f3d);
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
+position:fixed;
+width:100%;
+z-index:1000;
+}
+.logo{
+font-size:22px;
+font-weight:600;
+}
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#ddd;
+font-size:14px;
+}
+nav a:hover{color:white;}
+
+.credit{
+background:#111;
+padding:6px 12px;
+border-radius:6px;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+flex-direction:column;
+background:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d') center/cover no-repeat;
+background-blend-mode:overlay;
+background-color:rgba(0,0,0,0.7);
+}
+.hero h1{
+font-size:55px;
+margin-bottom:20px;
+}
+.hero p{
+max-width:600px;
+color:#ddd;
+margin-bottom:25px;
+}
+.hero button{
+padding:12px 30px;
+border:none;
+background:#0e0a0b;
+color:white;
+border-radius:30px;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+.dashboard{
+padding:120px 8%;
+display:flex;
+gap:30px;
+}
+
+.sidebar{
+width:220px;
+background:rgba(25, 13, 194, 0.08);
+padding:20px;
+border-radius:12px;
+height:400px;
+}
+.sidebar div{
+margin-bottom:15px;
+padding:10px;
+background:rgba(0,0,0,0.4);
+border-radius:6px;
+cursor:pointer;
+}
+.sidebar div:hover{background:#ff416c;}
+
+.main{
+flex:1;
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:12px;
+}
+
+.controls button{
+margin-right:10px;
+padding:8px 15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+background:#ff416c;
+color:white;
+}
+.stop{background:#c0392b;}
+
+.slider{
+margin-top:15px;
+}
+
+.album{
+width:140px;
+height:140px;
+border-radius:50%;
+background:url('https://i.imgur.com/8Km9tLL.jpg') center/cover;
+margin:20px auto;
+animation:spin 5s linear infinite;
+animation-play-state:paused;
+}
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}
+
+.library{
+margin-top:20px;
+}
+.track{
+background:rgba(0,0,0,0.4);
+padding:8px;
+border-radius:6px;
+margin-bottom:8px;
+display:flex;
+justify-content:space-between;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#111;
+margin-top:50px;
+font-size:14px;
+color:#aaa;
+}
+
+@media(max-width:900px){
+.dashboard{flex-direction:column;}
+.sidebar{width:100%;}
+}
+
+/* FEATURES */
+.features, .pricing, .contact{
+padding:80px 8%;
+text-align:center;
+}
+
+.features h2, .pricing h2, .contact h2{
+margin-bottom:40px;
+font-size:32px;
+}
+
+.feature-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:12px;
+}
+
+.card h3{
+margin-bottom:15px;
+color:#ff416c;
+}
+
+/* PRICING */
+.pricing-box{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.price-card{
+background:rgba(255,255,255,0.08);
+padding:30px;
+border-radius:12px;
+width:250px;
+}
+
+.price-card h3{
+margin-bottom:15px;
+color:#ff416c;
+}
+
+.price-card button{
+margin-top:15px;
+padding:8px 20px;
+border:none;
+border-radius:6px;
+background:#ff416c;
+color:white;
+cursor:pointer;
+}
+
+/* CONTACT */
+.contact-box{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.contact-box input,
+.contact-box textarea{
+padding:10px;
+border:none;
+border-radius:6px;
+background:rgba(255,255,255,0.1);
+color:white;
+}
+
+.contact-box textarea{
+height:120px;
+resize:none;
+}
+
+.contact-box button{
+padding:10px;
+border:none;
+border-radius:6px;
+background:#ca1313;
+color:white;
+cursor:pointer;
+}
+
+.mood-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.mood-buttons button {
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+  background: linear-gradient(45deg, #00f5ff, #8a2be2);
+  color: white;
+}
+
+.mood-buttons button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #00f5ff;
+}
+.about {
+  padding: 100px 10%;
+  background: #0f172a;
+  color: white;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Gradient Border */
+.img-wrapper {
+  position: relative;
+  border-radius: 25px;
+  padding: 5px;
+  background: linear-gradient(45deg, #00f5ff, #8a2be2);
+  display: inline-block;
+  overflow: hidden;
+}
+
+.img-wrapper img {
+  width: 380px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  transition: 0.5s;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  text-align: left;
+}
+
+.overlay h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #00f5ff;
+}
+
+.overlay p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Hover Effect */
+.img-wrapper:hover img {
+  transform: scale(1.08);
+}
+
+/* Text Section */
+.about-text {
+  max-width: 550px;
+}
+
+.about-text h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+  color: #00f5ff;
+}
+
+.about-text p {
+  line-height: 1.8;
+  font-size: 17px;
+  opacity: 0.9;
+}
+
+.how-it-works {
+  padding: 100px 10%;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  margin-bottom: 50px;
+  color: #00f5ff;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.step {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 15px;
+  width: 250px;
+  transition: 0.4s;
+}
+
+.step:hover {
+  transform: translateY(-10px);
+  background: #334155;
+}
+
+.premium-footer {
+  position: relative;
+  padding: 100px 10%;
+  color: white;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f172a, #0a0f1c, #001f3f);
+}
+
+/* Animated Gradient Glow */
+.premium-footer::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,245,255,0.4), transparent);
+  top: -200px;
+  left: -200px;
+  animation: glowMove 8s linear infinite alternate;
+}
+
+@keyframes glowMove {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(200px,200px); }
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-box {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #00f5ff, #8a2be2);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 20px #00f5ff;
+}
+
+.footer-left h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.footer-left p {
+  max-width: 300px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.footer-column h3 {
+  margin-bottom: 20px;
+  color: #00f5ff;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #ddd;
+  transition: 0.3s;
+}
+
+.footer-column a:hover {
+  color: #00f5ff;
+  transform: translateX(5px);
+}
+
+/* Social Icons */
+.social-icons i {
+  font-size: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.social-icons i:hover {
+  color: #00f5ff;
+  transform: scale(1.3);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  margin-top: 60px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 14px;
+  opacity: 0.8;
+}
+.voice-generator {
+  padding: 80px 10%;
+  background: linear-gradient(135deg, #0f172a, #001f3f);
+  text-align: center;
+  color: white;
+}
+
+.voice-generator h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #00f5ff;
+}
+
+.voice-generator p {
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.voice-generator textarea {
+  width: 100%;
+  max-width: 700px;
+  height: 150px;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 20px;
+  resize: none;
+}
+
+.voice-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.voice-controls select,
+.voice-controls button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.voice-controls select {
+  background: #111;
+  color: white;
+}
+
+.voice-controls button {
+  background: linear-gradient(45deg, #00f5ff, #8a2be2);
+  color: white;
+  transition: 0.3s;
+}
+
+.voice-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00f5ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">🎵 AI Music Generator</div>
+<nav>
+<a href="#">Home</a>
+<a href="#">Features</a>
+<a href="#">Pricing</a>
+<a href="#">Contact</a>
+</nav>
+<div class="neha">Credits: <span id="neha">31</span></div>
+</header>
+
+<section class="hero">
+<h1>Create AI Generated Music</h1>
+<p>Generate professional beats and melodies instantly using advanced artificial intelligence technology.</p>
+<button onclick="scrollToDashboard()">Start Creating</button>
+</section>
+
+<section class="dashboard" id="dashboard">
+
+<div class="sidebar">
+<div>Text To Music</div>
+<div>Drum Generator</div>
+<div>Melody Maker</div>
+<div>My Library</div>
+</div>
+
+<div class="main">
+<h2>Music Studio</h2>
+
+<div class="controls">
+<button onclick="generateBeat()">Generate</button>
+<button class="stop" onclick="stopBeat()">Stop</button>
+<button onclick="saveTrack()">Save</button>
+</div>
+
+<div class="slider">
+BPM: <span id="bpmValue">120</span>
+<br>
+<input type="range" min="60" max="180" value="120" id="bpmSlider">
+</div>
+
+<div class="album" id="album"></div>
+
+<h3>Saved Tracks</h3>
+<div class="library" id="library"></div>
+
+</div>
+</section>
+<section class="features">
+<h2>Features</h2>
+
+<div class="feature-box">
+  <div class="card">
+    <h3>AI Beat Generator</h3>
+    <p>Generate professional drum beats instantly using AI powered engine.</p>
+  </div>
+
+  <div class="card">
+    <h3>BPM Control</h3>
+    <p>Adjust tempo from 60 to 180 BPM for full creative control.</p>
+  </div>
+
+  <div class="card">
+    <h3>Track Save System</h3>
+    <p>Save your generated tracks using LocalStorage system.</p>
+  </div>
+
+  <div class="card">
+    <h3>Credit System</h3>
+    <p>Each generation consumes credits for realistic AI simulation.</p>
+  </div>
+</div>
+<section class="voice-generator">
+  <h2>🎤 AI Voice Generator</h2>
+  <p>Enter your lyrics and generate AI singing preview</p>
+
+  <textarea id="lyricsInput" placeholder="Write your song lyrics here..."></textarea>
+
+  <div class="voice-controls">
+    <select id="voiceTone">
+      <option value="male">Male Voice</option>
+      <option value="female">Female Voice</option>
+      <option value="robot">Robot Voice</option>
+    </select>
+
+    <button onclick="generateVoice()">Generate Voice Preview</button>
+  </div>
+
+  <audio id="voiceAudio" controls style="display:none;"></audio>
+</section>
+
+</section>
+  <div class="mood-section">
+  <h2>Select Mood</h2>
+  <div class="mood-buttons">
+    <button onclick="setMood('happy')">Happy 😊</button>
+    <button onclick="setMood('sad')">Sad 😔</button>
+    <button onclick="setMood('energetic')">Energetic 🔥</button>
+    <button onclick="setMood('relax')">Relax 🎧</button>
+  </div>
+</div>
+
+<section class="pricing">
+<h2>Pricing Plans</h2>
+
+<div class="pricing-box">
+  <div class="price-card">
+    <h3>Free</h3>
+    <p>10 Credits</p>
+    <p>Basic Beat Generator</p>
+    <button>Choose Plan</button>
+  </div>
+
+
+
+  <div class="price-card">
+    <h3>Pro</h3>
+    <p>100 Credits</p>
+    <p>Advanced AI Model</p>
+    <button>Choose Plan</button>
+  </div>
+
+  <div class="price-card">
+    <h3>Premium</h3>
+    <p>Unlimited Credits</p>
+    <p>Full Music Studio Access</p>
+    <button>Choose Plan</button>
+  </div>
+</div>
+</section>
+
+
+<div class="contact-box">
+  <input type="text" placeholder="Your Name">
+  <input type="email" placeholder="Your Email">
+  <textarea placeholder="Your Message"></textarea>
+  <button>Send Message</button>
+</div>
+</section>
+<section class="how-it-works">
+  <h2>How It Works</h2>
+
+  <div class="steps">
+    <div class="step">
+      <h3>🎵 Select Mood</h3>
+      <p>Choose your desired music mood like Happy, Sad or Energetic.</p>
+    </div>
+
+    <div class="step">
+      <h3>🎚 Adjust BPM</h3>
+      <p>Control the tempo of your music using the BPM slider.</p>
+    </div>
+
+    <div class="step">
+      <h3>💾 Generate & Save</h3>
+      <p>Generate beats instantly and save them to your personal library.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-container">
+
+    <div class="about-img">
+      <div class="img-wrapper">
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d" alt="AI Music Generator">
+        <div class="overlay">
+          <h3>AI Powered Beats</h3>
+          <p>Create. Feel. Generate.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <h2>About This Project</h2>
+      <p>
+        This AI Music Generator is a college project built using 
+        HTML, CSS and JavaScript. It uses Web Audio API to generate 
+        real-time drum beats. Users can select mood, control BPM, 
+        generate beats and save tracks using LocalStorage.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  </div>
+</section>
+</section>
+<footer class="premium-footer">
+
+  <div class="footer-container">
+
+    <!-- Left Section -->
+    <div class="footer-left">
+      <div class="logo-box">🎵</div>
+      <h2>AI Music</h2>
+      <p>Create stunning original music in seconds using AI technology.</p>
+
+      <div class="social-icons">
+        <i class="fab fa-youtube"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-discord"></i>
+      </div>
+    </div>
+
+    <!-- Resources -->
+    <div class="footer-column">
+      <h3>Resources</h3>
+      <a href="#">Tutorials</a>
+      <a href="#">Blog</a>
+      <a href="#">Community</a>
+      <a href="#">Support</a>
+    </div>
+
+    <!-- Company -->
+    <div class="footer-column">
+      <h3>Company</h3>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Pricing</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 AI Music Generator | Developed by Neha Malviya 
+  </div>
+
+</footer>
+
+<script>
+/* ===============================
+   GLOBAL VARIABLES
+=================================*/
+let audioCtx;
+let interval;
+let bpm = 120;
+let credits = 10;
+let step = 0;
+
+/* ===============================
+   INITIAL LOAD
+=================================*/
+window.onload = function () {
+  loadLibrary();
+  document.getElementById("bpmValue").innerText = bpm;
+  document.getElementById("credits").innerText = credits;
+};
+
+/* ===============================
+   BPM CONTROL
+=================================*/
+document.getElementById("bpmSlider").oninput = function () {
+  bpm = this.value;
+  document.getElementById("bpmValue").innerText = bpm;
+};
+
+/* ===============================
+   SCROLL FUNCTION
+=================================*/
+function scrollToDashboard() {
+  document.getElementById("dashboard").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+/* ===============================
+   GENERATE BEAT
+=================================*/
+function generateBeat() {
+  if (credits <= 0) {
+    alert("No Credits Left!");
+    return;
+  }
+
+  credits--;
+  document.getElementById("credits").innerText = credits;
+
+  stopBeat();
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  document.getElementById("album").style.animationPlayState = "running";
+
+  let beatTime = (60 / bpm) * 1000;
+  step = 0;
+
+  interval = setInterval(() => {
+    if (step % 4 === 0) kick();
+    if (step % 4 === 2) snare();
+    step++;
+  }, beatTime / 2);
+
+  startEqualizer();
+}
+
+/* ===============================
+   KICK DRUM
+=================================*/
+function kick() {
+  let osc = audioCtx.createOscillator();
+  let gain = audioCtx.createGain();
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.frequency.value = 150;
+
+  gain.gain.setValueAtTime(1, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.2);
+}
+
+/* ===============================
+   SNARE DRUM
+=================================*/
+function snare() {
+  let noise = audioCtx.createBufferSource();
+  let buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.2, audioCtx.sampleRate);
+  let data = buffer.getChannelData(0);
+
+  for (let i = 0; i < data.length; i++) {
+    data[i] = Math.random() * 2 - 1;
+  }
+
+  noise.buffer = buffer;
+
+  let gain = audioCtx.createGain();
+  noise.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+
+  noise.start();
+}
+
+/* ===============================
+   STOP BEAT
+=================================*/
+function stopBeat() {
+  if (interval) clearInterval(interval);
+  if (audioCtx) audioCtx.close();
+
+  document.getElementById("album").style.animationPlayState = "paused";
+  stopEqualizer();
+}
+
+/* ===============================
+   SAVE TRACK (LocalStorage)
+=================================*/
+function saveTrack() {
+  let tracks = JSON.parse(localStorage.getItem("tracks")) || [];
+
+  tracks.push("Track - " + new Date().toLocaleTimeString());
+
+  localStorage.setItem("tracks", JSON.stringify(tracks));
+
+  loadLibrary();
+}
+
+/* ===============================
+   LOAD LIBRARY
+=================================*/
+function loadLibrary() {
+  let container = document.getElementById("library");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  let tracks = JSON.parse(localStorage.getItem("tracks")) || [];
+
+  tracks.forEach((t, i) => {
+    container.innerHTML += `
+      <div class="track">
+        ${t}
+        <button onclick="deleteTrack(${i})">Delete</button>
+      </div>
+    `;
+  });
+}
+
+/* ===============================
+   DELETE TRACK
+=================================*/
+function deleteTrack(i) {
+  let tracks = JSON.parse(localStorage.getItem("tracks")) || [];
+  tracks.splice(i, 1);
+  localStorage.setItem("tracks", JSON.stringify(tracks));
+  loadLibrary();
+}
+
+/* ===============================
+   MOOD BASED GENERATOR
+=================================*/
+function setMood(mood) {
+  if (mood === "happy") bpm = 120;
+  if (mood === "sad") bpm = 70;
+  if (mood === "energetic") bpm = 150;
+  if (mood === "relax") bpm = 60;
+
+  document.getElementById("bpmSlider").value = bpm;
+  document.getElementById("bpmValue").innerText = bpm;
+
+  generateBeat();
+}
+
+/* ===============================
+   EQUALIZER ANIMATION
+=================================*/
+let eqInterval;
+
+function startEqualizer() {
+  const bars = document.querySelectorAll(".eq-bar");
+
+  eqInterval = setInterval(() => {
+    bars.forEach(bar => {
+      let height = Math.floor(Math.random() * 100) + 20;
+      bar.style.height = height + "px";
+    });
+  }, 200);
+}
+
+function stopEqualizer() {
+  clearInterval(eqInterval);
+}
+
+/* ===============================
+   AI VOICE GENERATOR
+=================================*/
+function generateVoice() {
+  const text = document.getElementById("lyricsInput").value;
+  const tone = document.getElementById("voiceTone").value;
+
+  if (!text.trim()) {
+    alert("Please enter lyrics!");
+    return;
+  }
+
+  const speech = new SpeechSynthesisUtterance(text);
+
+  if (tone === "male") {
+    speech.pitch = 0.8;
+    speech.rate = 0.9;
+  } 
+  else if (tone === "female") {
+    speech.pitch = 1.3;
+    speech.rate = 1;
+  } 
+  else if (tone === "robot") {
+    speech.pitch = 0.5;
+    speech.rate = 1.4;
+  }
+
+  speech.volume = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+</script>
+</body>
+</html>

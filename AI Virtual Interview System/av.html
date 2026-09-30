@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Virtual Interview</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<h2 class="logo">AI Interview</h2>
+
+<ul>
+<li>Home</li>
+<li>Interview</li>
+<li>About</li>
+<li>Contact</li>
+</ul>
+
+</nav>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<h1>AI Virtual Interview System</h1>
+
+<p>Practice interview with Artificial Intelligence</p>
+
+<button onclick="startInterview()">Start Interview</button>
+
+</section>
+
+
+<!-- INTERVIEW SECTION -->
+
+<section class="interview">
+
+<h2>Interview Question</h2>
+
+<div class="card">
+
+<h3 id="question">Click Start Interview</h3>
+
+<textarea id="answer" placeholder="Write your answer..."></textarea>
+
+<div class="buttons">
+
+<button onclick="nextQuestion()">Next Question</button>
+
+<button onclick="submitAnswer()">Submit Answer</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- RESULT SECTION -->
+
+<section class="result">
+
+<h2>Your Result</h2>
+
+<h3 id="score"></h3>
+
+<p id="feedback"></p>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 AI Virtual Interview System</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

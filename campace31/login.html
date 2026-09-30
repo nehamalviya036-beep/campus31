@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Auth System</title>
+
+<style>
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#0f172a;
+font-family:sans-serif;
+color:white;
+}
+
+.box{
+background:#1e293b;
+padding:30px;
+border-radius:10px;
+width:320px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:#38bdf8;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.link{
+margin-top:10px;
+cursor:pointer;
+color:#38bdf8;
+}
+
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<!-- LOGIN -->
+<div id="loginBox">
+<h2>Login</h2>
+
+<input id="loginUser" placeholder="Username">
+<input id="loginPass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p class="link" onclick="showSignup()">New User? Signup</p>
+<p id="loginMsg"></p>
+</div>
+
+<!-- SIGNUP -->
+<div id="signupBox" class="hidden">
+<h2>Signup</h2>
+
+<input id="name" placeholder="Full Name">
+<input id="email" placeholder="Email">
+<input id="signupUser" placeholder="Username">
+<input id="signupPass" type="password" placeholder="Password">
+
+<button onclick="signup()">Create Account</button>
+
+<p class="link" onclick="showLogin()">Already have account?</p>
+<p id="signupMsg"></p>
+</div>
+
+</div>
+
+<script>
+
+// SWITCH
+function showSignup(){
+document.getElementById("loginBox").classList.add("hidden");
+document.getElementById("signupBox").classList.remove("hidden");
+}
+
+function showLogin(){
+document.getElementById("signupBox").classList.add("hidden");
+document.getElementById("loginBox").classList.remove("hidden");
+}
+
+// SIGNUP
+function signup(){
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let user=document.getElementById("signupUser").value;
+let pass=document.getElementById("signupPass").value;
+
+if(name && email && user && pass){
+
+localStorage.setItem("name",name);
+localStorage.setItem("email",email);
+localStorage.setItem("user",user);
+localStorage.setItem("pass",pass);
+
+document.getElementById("signupMsg").innerText="✅ Account Created!";
+
+}else{
+document.getElementById("signupMsg").innerText="❌ Fill all fields";
+}
+}
+
+// LOGIN
+function login(){
+let u=document.getElementById("loginUser").value;
+let p=document.getElementById("loginPass").value;
+
+let su=localStorage.getItem("user");
+let sp=localStorage.getItem("pass");
+
+if(u===su && p===sp){
+
+localStorage.setItem("login","true");
+
+document.getElementById("loginMsg").innerText="✅ Login Success";
+
+setTimeout(()=>{
+window.location.href="dashboard.html";
+},800);
+
+}else{
+document.getElementById("loginMsg").innerText="❌ Wrong credentials";
+}
+}
+
+</script>
+
+</body>
+</html>

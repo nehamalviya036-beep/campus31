@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital & Clinic</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#0b0c24;color:#fff}
+section{padding:90px 60px}
+
+/* NAV */
+header{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;
+align-items:center;padding:15px 60px;background:#0b0c24;z-index:1000}
+header.scrolled{box-shadow:0 4px 15px rgba(0,0,0,.7)}
+nav a{margin-left:20px;color:#fff;text-decoration:none}
+nav a.active{color:#38bdf8}
+.menu{display:none;font-size:24px}
+
+/* HERO */
+.hero{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3') center/cover;
+display:flex;align-items:center
+}
+.hero div{max-width:600px}
+.hero h1{font-size:50px;margin-bottom:20px}
+.hero p{font-size:18px;margin-bottom:20px;color:#cbd5e1}
+.hero button{padding:14px 30px;border:none;border-radius:8px;background:#38bdf8;cursor:pointer}
+
+/* DOCTORS */
+.doctor-section{margin-top:50px}
+.doctor{
+background:#111233;padding:25px;border-radius:15px;margin-bottom:20px
+}
+.doctor h3{color:#00ffff}
+.doctor span{display:block;margin-bottom:8px;color:#94a3b8}
+.doctor p{display:none;color:#d1d5db}
+.btn{padding:8px 16px;border:none;border-radius:6px;
+background:#38bdf8;margin-right:8px;cursor:pointer}
+
+/* FORM */
+form{max-width:500px;margin:auto;display:flex;flex-direction:column}
+form input,form textarea{
+padding:12px;margin-bottom:15px;border-radius:8px;border:none
+}
+
+/* POPUP */
+.popup{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.6);display:none;
+align-items:center;justify-content:center
+}
+.popup-box{
+background:#111233;padding:30px;border-radius:12px;text-align:center
+}
+.popup-box h3{color:#38bdf8}
+
+/* ADMIN */
+.admin{
+background:#111233;border-radius:15px;padding:40px
+}
+.admin-grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px
+}
+.admin-card{
+background:#14144f;padding:25px;border-radius:12px;text-align:center
+}
+
+@media(max-width:768px){
+nav{display:none;flex-direction:column;background:#111233;
+position:absolute;top:60px;right:20px;padding:20px}
+nav.show{display:flex}
+.menu{display:block}
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+<h2 style="color:#38bdf8">HospitalCare</h2>
+<i class="fas fa-bars menu" id="menu"></i>
+<nav id="nav">
+<a href="#home" class="active">Home</a>
+<a href="#doctors">Doctors</a>
+<a href="#appointment">Appointment</a>
+<a href="#admin">Admin</a>
+<a href="about">About</a>
+</nav>
+</header>
+
+<!-- HERO / HOME -->
+<section class="hero" id="home">
+<div>
+<h1>Trusted Hospital & Clinic</h1>
+<p>Providing expert healthcare services with compassionate care. Book your appointment today and meet our experienced doctors.</p>
+<button onclick="scrollToForm()">Book Appointment</button>
+</div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors" class="doctor-section">
+<h2>Our Doctors</h2><br>
+
+<div class="doctor">
+<h3>Dr. Amit Sharma</h3>
+<span>Cardiologist | Mon–Sat 10AM–4PM</span>
+<p>Heart disease and angioplasty specialist.</p><br>
+<button class="btn" onclick="toggleWork(this)">View Work</button>
+<button class="btn" onclick="selectDoctor('Dr. Amit Sharma','Cardiologist')">
+Book Appointment</button>
+</div>
+
+<div class="doctor">
+<h3>Dr. Neha Verma</h3>
+<span>Gynecologist | Mon–Sat 11AM–5PM</span>
+<p>Women health and pregnancy care expert.</p><br>
+<button class="btn" onclick="toggleWork(this)">View Work</button>
+<button class="btn" onclick="selectDoctor('Dr. Neha Verma','Gynecologist')">
+Book Appointment</button>
+</div>
+
+<div class="doctor">
+<h3>Dr. Rajesh Kumar</h3>
+<span>Neurologist | Mon–Fri 9AM–3PM</span>
+<p>Expert in brain and nervous system disorders.</p><br>
+<button class="btn" onclick="toggleWork(this)">View Work</button>
+<button class="btn" onclick="selectDoctor('Dr. Rajesh Kumar','Neurologist')">
+Book Appointment</button>
+</div>
+
+<div class="doctor">
+<h3>Dr. Priya Singh</h3>
+<span>Pediatrician | Mon–Sat 10AM–4PM</span>
+<p>Child health and vaccination specialist.</p><br>
+<button class="btn" onclick="toggleWork(this)">View Work</button>
+<button class="btn" onclick="selectDoctor('Dr. Priya Singh','Pediatrician')">
+Book Appointment</button>
+</div>
+
+<div class="doctor">
+<h3>Dr. Anil Mehta</h3>
+<span>Orthopedic | Mon–Fri 11AM–5PM</span>
+<p>Bone and joint care expert.</p><br>
+<button class="btn" onclick="toggleWork(this)">View Work</button>
+<button class="btn" onclick="selectDoctor('Dr. Anil Mehta','Orthopedic')">
+Book Appointment</button>
+</div>
+
+</section>
+
+<!-- APPOINTMENT -->
+<section id="appointment">
+<h2>Appointment Form</h2>
+<form onsubmit="showPopup(event)">
+<input type="text" id="doctor" placeholder="Doctor Name" readonly>
+<input type="text" id="special" placeholder="Specialization" readonly>
+<input type="text" placeholder="Patient Name" required>
+<input type="date" required>
+<textarea placeholder="Health Issue"></textarea>
+<button type="submit">Submit</button>
+</form>
+</section>
+
+<!-- CENTRE OF EXCELLENCE -->
+<section id="coe" style="padding:70px 60px;background:#0b0c24;text-align:center">
+<h2>Centre of Excellence</h2>
+<p style="max-width:900px;margin:auto;margin-top:20px;font-size:18px;color:#cbd5e1">
+Our hospital is equipped with world-class facilities and specialized departments to provide exceptional healthcare services. Explore our areas of expertise below.
+</p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-top:40px">
+  <div style="background:#111233;padding:25px;border-radius:15px">
+    <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Cardiology" width="60" style="margin-bottom:15px">
+    <h3 style="color:#38bdf8">Cardiology</h3>
+    <p style="color:#cbd5e1;margin-top:10px">Advanced heart care and cardiac surgery with experienced cardiologists.</p>
+  </div>
+  
+  <div style="background:#111233;padding:25px;border-radius:15px">
+    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Neurology" width="60" style="margin-bottom:15px">
+    <h3 style="color:#38bdf8">Neurology</h3>
+    <p style="color:#cbd5e1;margin-top:10px">Comprehensive care for brain and nervous system disorders.</p>
+  </div>
+  
+  <div style="background:#111233;padding:25px;border-radius:15px">
+    <img src="https://cdn-icons-png.flaticon.com/512/4333/4333607.png" alt="Pediatrics" width="60" style="margin-bottom:15px">
+    <h3 style="color:#38bdf8">Pediatrics</h3>
+    <p style="color:#cbd5e1;margin-top:10px">Specialized care for children and newborns with a compassionate team.</p>
+  </div>
+  
+  <div style="background:#111233;padding:25px;border-radius:15px">
+    <img src="https://cdn-icons-png.flaticon.com/512/3449/3449375.png" alt="Orthopedics" width="60" style="margin-bottom:15px">
+    <h3 style="color:#38bdf8">Orthopedics</h3>
+    <p style="color:#cbd5e1;margin-top:10px">Expert bone and joint care with modern orthopedic solutions.</p>
+  </div>
+</div>
+</section>
+
+
+<!-- ADMIN DASHBOARD -->
+<section id="admin">
+<h2>Admin Dashboard (Demo)</h2><br>
+<div class="admin">
+<div class="admin-grid">
+<div class="admin-card">
+<h3>120</h3>
+<p>Total Appointments</p>
+</div>
+<div class="admin-card">
+<h3>8</h3>
+<p>Total Doctors</p>
+</div>
+<div class="admin-card">
+<h3>15</h3>
+<p>Today Appointments</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER SIGNUP -->
+<section id="newsletter" style="padding:70px 60px;background:#111233;text-align:center">
+<h2>Subscribe to Our Newsletter</h2>
+<p style="max-width:800px;margin:auto;margin-top:20px;font-size:18px;color:#cbd5e1">
+Stay updated with the latest health tips, hospital news, and exclusive offers. Subscribe to our newsletter today.
+</p>
+
+<form style="margin-top:30px;display:flex;justify-content:center;flex-wrap:wrap;gap:15px" onsubmit="subscribeNewsletter(event)">
+<input type="email" id="newsletterEmail" placeholder="Enter your email" required
+style="padding:12px 15px;border-radius:8px;border:none;min-width:250px">
+<button type="submit" style="padding:12px 25px;border:none;border-radius:8px;background:#38bdf8;color:#fff;cursor:pointer">
+Subscribe
+</button>
+</form>
+</section>
+
+<!-- ABOUT US -->
+<section id="about">
+<h2>About Us</h2>
+<p style="max-width:800px;margin:auto;margin-top:20px;font-size:18px;color:#cbd5e1;text-align:center">
+HospitalCare is a trusted healthcare provider offering top-notch medical services with compassion and care.  
+Our mission is to provide quality treatment using advanced medical technologies while ensuring patient comfort and satisfaction.  
+We have a dedicated team of experienced doctors and staff committed to your well-being.
+</p>
+</section>
+
+<!-- FOLLOW / SOCIAL LINKS WITH IMAGES -->
+<section id="follow" style="padding:50px 0;background:#111233;text-align:center">
+<h2>Follow Us</h2>
+<div style="margin-top:20px;display:flex;justify-content:center;gap:25px;flex-wrap:wrap">
+  <a href="#" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="50">
+  </a>
+  <a href="#" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="50">
+  </a>
+  <a href="#" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" width="50">
+  </a>
+  <a href="#" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="LinkedIn" width="50">
+  </a>
+</div>
+</section>
+
+
+
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-box">
+<h3>✅ Appointment Booked</h3>
+<p>Doctor will contact you soon.</p><br>
+<hr style="margin:15px 0;border:1px solid #334155">
+
+<div id="receipt" style="text-align:left;font-size:15px">
+  <p><b>Appointment ID:</b> <span id="rid"></span></p>
+  <p><b>Doctor:</b> <span id="rdoctor"></span></p>
+  <p><b>Specialization:</b> <span id="rspec"></span></p>
+  <p><b>Patient Name:</b> <span id="rpatient"></span></p>
+  <p><b>Date:</b> <span id="rdate"></span></p>
+</div>
+
+<button class="btn" onclick="printReceipt()">Print Receipt</button>
+<button class="btn" onclick="payNow()">Pay ₹500</button>
+
+<button class="btn" onclick="closePopup()">OK</button>
+</div>
+</div>
+
+<script>
+
+/* Sticky shadow */
+const header = document.getElementById('header');
+const menu = document.getElementById('menu');
+const nav = document.getElementById('nav');
+
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', scrollY > 50);
+});
+
+/* Mobile Menu */
+menu.onclick = () => nav.classList.toggle('show');
+
+/* Doctor work toggle */
+function toggleWork(btn){
+  let p = btn.previousElementSibling;
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+/* Select doctor */
+function selectDoctor(name, spec){
+  document.getElementById("doctor").value = name;
+  document.getElementById("special").value = spec;
+  scrollToForm();
+}
+
+/* Scroll to appointment form */
+function scrollToForm(){
+  document.getElementById("appointment").scrollIntoView({behavior:'smooth'});
+}
+
+/* Close popup */
+function closePopup(){
+  document.getElementById("popup").style.display = "none";
+}
+
+/* Newsletter subscribe */
+function subscribeNewsletter(e){
+  e.preventDefault();
+  let email = document.getElementById('newsletterEmail').value;
+
+  if(email){
+    alert("✅ Thank you for subscribing! Updates will be sent to " + email);
+    document.getElementById('newsletterEmail').value = "";
+  }
+}
+
+/* Appointment Submit + Backend Connect */
+
+async function showPopup(e){
+  e.preventDefault();
+
+  let patient = document.querySelector('input[placeholder="Patient Name"]').value;
+  let date = document.querySelector('input[type="date"]').value;
+  let doctor = document.getElementById("doctor").value;
+  let spec = document.getElementById("special").value;
+  let issue = document.querySelector("textarea").value;
+
+  let data = {
+    doctor: doctor,
+    specialization: spec,
+    patient_name: patient,
+    date: date,
+    issue: issue
+  };
+
+  try{
+    await fetch("http://localhost:5000/appointment",{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  }
+  catch(err){
+    console.log("Server Error", err);
+  }
+
+  /* Receipt Generate */
+
+  document.getElementById("rid").innerText =
+  "HC-" + Math.floor(Math.random()*90000+10000);
+
+  document.getElementById("rdoctor").innerText = doctor;
+  document.getElementById("rspec").innerText = spec;
+  document.getElementById("rpatient").innerText = patient;
+  document.getElementById("rdate").innerText = date;
+
+  document.getElementById("popup").style.display = "flex";
+}
+
+/* Print Receipt */
+
+function printReceipt(){
+  window.print();
+}
+
+function payNow(){
+
+var options = {
+"key": "rzp_test_123456789", // demo key
+"amount": 50000,
+"currency": "INR",
+"name": "HospitalCare",
+"description": "Doctor Appointment Payment",
+"image": "https://cdn-icons-png.flaticon.com/512/2965/2965567.png",
+
+handler: function (response){
+alert("Payment Successful ✅\nPayment ID: " + response.razorpay_payment_id);
+}
+
+};
+
+var rzp1 = new Razorpay(options);
+rzp1.open();
+}
+</script>
+<!-- RECEPTION / HELP DESK -->
+<section id="reception" style="padding:70px 60px;background:#0b0c24;text-align:center">
+  <h2>Reception & Help Desk</h2>
+  <p style="max-width:800px;margin:auto;margin-top:15px;font-size:18px;color:#cbd5e1">
+    Our reception team is available 24/7 to assist you with appointments, billing,
+    doctor availability, and emergency support.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+              gap:25px;margin-top:40px">
+    
+    <div style="background:#111233;padding:25px;border-radius:15px">
+      <i class="fas fa-user-nurse" style="font-size:40px;color:#38bdf8"></i>
+      <h3 style="margin-top:15px">Front Desk</h3>
+      <p style="color:#cbd5e1">Patient registration & guidance</p>
+    </div>
+
+    <div style="background:#111233;padding:25px;border-radius:15px">
+      <i class="fas fa-phone-volume" style="font-size:40px;color:#38bdf8"></i>
+      <h3 style="margin-top:15px">Call Support</h3>
+      <p style="color:#cbd5e1">+91 98765 43210</p>
+    </div>
+
+    <div style="background:#111233;padding:25px;border-radius:15px">
+      <i class="fas fa-ambulance" style="font-size:40px;color:#38bdf8"></i>
+      <h3 style="margin-top:15px">Emergency</h3>
+      <p style="color:#cbd5e1">24/7 Ambulance Service</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHATSAPP LIVE CHAT BUTTON -->
+<a href="https://tse1.mm.bing.net/th/id/OIP.6DzBx2lnrwvP7SCkvXUHUQHaHk?pid=Api&P=0&h=180" target="_blank"
+style="
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+color:white;
+padding:15px 18px;
+border-radius:50%;
+font-size:28px;
+box-shadow:0 8px 20px rgba(0,0,0,.4);
+z-index:9999;
+text-decoration:none;">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ABOUT SECTION -->
+<section id="about" style="padding:70px 60px;background:#0b0c24;text-align:center">
+  <h2 style="color:#38bdf8;margin-bottom:20px">About HospitalCare</h2>
+  <p style="max-width:800px;margin:auto;font-size:18px;color:#cbd5e1;line-height:1.6">
+    Creative and detail-oriented <strong>Web Developer</strong> with hands-on experience in building <strong>responsive and interactive web applications</strong> using <strong>HTML, CSS, JavaScript, Node.js, and MySQL</strong>.  
+    Skilled in <strong>frontend and backend integration</strong>, crafting <strong>intuitive user interfaces</strong>, and delivering efficient, real-world solutions.  
+    Passionate about leveraging technology to solve problems and enhance user experience.
+  </p>
+</section>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
